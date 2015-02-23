@@ -3,10 +3,10 @@ import card
 import hand
 import player
 #import house
-
+#testing
 gameDeck = deck.Deck()
 
-playerName = raw_input('Please enter your name? ')
+playerName = raw_input('Please enter your name? testing')
 
 gamePlayer = player.Player(playerName) 
 
