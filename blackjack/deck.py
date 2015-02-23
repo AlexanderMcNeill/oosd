@@ -1,7 +1,7 @@
 import random
 import card
 
-class Deck:
+class Deck(object):
 	DECK_SIZE = 52
 	HOUSE_SIZE = 13
 	HOUSES = ["Spade","Club","Heart","Diamond"]

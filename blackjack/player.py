@@ -1,17 +1,15 @@
 import hand
 import deck
 
-class Player:
-
-	bust = False
+class Player(object):
 
 	def __init__(self, playerName):
-		self.playerHand = hand.Hand()
 		self.playerName = playerName
+		self.bust = False
+		self.playerHand = hand.Hand()
 
 	def hitMe(self, newCard):
 		self.playerHand.addCard(newCard)
-		self.playerHand.displayHand()
 		self.bust = self.playerHand.checkBust()
 
 	def playTurn(self, gameDeck):
@@ -20,12 +18,13 @@ class Player:
 
 		print(self.playerName + "'s turn")
 
+
 		while playing == True and self.bust == False:
-			
 			self.hitMe(gameDeck.dealCard())
+			self.playerHand.displayHand()
 
 			if self.bust:
-				print("You went bust!!")
+				print("House bust!!")
 
 			else:
 				userOption = raw_input('Would you like another card (y, n)? ')

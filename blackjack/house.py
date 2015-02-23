@@ -7,13 +7,29 @@ class House(player.Player):
 
 
 	def __init__(self):
-		playerHand = hand.Hand()
-		self.playerName = playerName
+		super(House, self).__init__("House")
 
-	def setup(gameDeck):
+	def setup(self, gameDeck):
 		self.hitMe(gameDeck.dealCard())
 		
 		self.hitMe(gameDeck.dealCard())
 
 		print("The House shows their first card and leaves the other card face down")
 		self.playerHand.displayCard(0)
+
+	def playTurn(self, gameDeck):
+		
+		playing = True
+
+		print(self.playerName + "'s turn")
+		
+		self.playerHand.displayHand()
+
+		while playing == True and self.bust == False:
+			self.hitMe(gameDeck.dealCard())
+			self.playerHand.displayHand()
+
+			if self.playerHand.getTotal() > 16:
+				playing = False
+			if self.bust:
+				print(self.playerName  + " went bust!!")
