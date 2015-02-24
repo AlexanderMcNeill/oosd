@@ -91,26 +91,26 @@ import house
 
 				self.house.playTurn(self.deck)
 
-			def runResults():
-				print("//////////////////////////////////////////////////////////////////////")
-				print("The game is over. The results are:")
-				
-				#looping through each of the players playing the game
-				for p in self.players:
-					#checking if the player went bust during the game
-					if p.isBust:
-						print(p.name + " went bust, the house took their money")
-					else:
-						if p.hand.getTotal() > self.house.getTotal() or self.house.isBust:
-							print(p.name + " beats the house, house pays out money")
+		def runResults():
+			print("//////////////////////////////////////////////////////////////////////")
+			print("The game is over. The results are:")
+			
+			#looping through each of the players playing the game
+			for p in self.players:
+				#checking if the player went bust during the game
+				if p.isBust:
+					print(p.name + " went bust, the house took their money")
+				else:
+					if p.hand.getTotal() > self.house.getTotal() or self.house.isBust:
+						print(p.name + " beats the house, house pays out money")
 
-			def checkPlayerResponse(self, playerInput):
-				while playerInput is not 'y' or playerInput is not 'n':
-					print("Please enter valid answer ('y' or 'n')")
+		def checkPlayerResponse(self, playerInput):
+			while playerInput is not 'y' or playerInput is not 'n':
+				print("Please enter valid answer ('y' or 'n')")
 
-				if playerInput is 'y' or playerInput is 'Y'
-					return True
-				else
-					return False
+			if playerInput is 'y' or playerInput is 'Y'
+				return True
+			else
+				return False
 
 
