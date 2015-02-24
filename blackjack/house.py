@@ -21,15 +21,23 @@ class House(player.Player):
 		
 		playing = True
 
-		print(self.playerName + "'s turn")
+		print("//////////////////////////////////////////////////////////////////////")
+		print("It is the " + self.name + "'s turn")
 		
-		self.playerHand.displayHand()
+		print(self.name + "'s current hand is:")
+		self.showHandStatus()
 
 		while playing == True and self.bust == False:
-			self.hitMe(gameDeck.dealCard())
-			self.playerHand.displayHand()
+
+			newCard = gameDeck.dealCard()
+
+			print(self.name + " is dealt the " + newCard.display())
+			
+			self.hitMe(newCard)
+			self.showHandStatus()
 
 			if self.playerHand.getTotal() > 16:
+				print(self.name + " house stands")
 				playing = False
 			if self.bust:
 				print(self.playerName  + " went bust!!")

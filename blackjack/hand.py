@@ -7,15 +7,9 @@ class Hand(object):
 		self.cards = []
 
 	def displayHand(self):
-		total = 0
-
-		print("Hand is:")
 		for c in self.cards:
 			c.display()
 			total+= c.value
-
-		total = self.getTotal()
-		print("Your total is: " + str(total))
 
 	def displayCard(self, cardIndex):
 		self.cards[cardIndex].display()

@@ -4,9 +4,9 @@ import deck
 class Player(object):
 
 	def __init__(self, playerName):
-		self.playerName = playerName
+		self.name = playerName
 		self.isBust = False
-		self.playerHand = hand.Hand()
+		self.hand = hand.Hand()
 
 	def hitMe(self, newCard):
 		self.playerHand.addCard(newCard)
@@ -16,27 +16,7 @@ class Player(object):
 		hitMe(deck)
 		hitMe(deck)
 
-	def playTurn(self, gameDeck):
-		
-		playing = True
-
-		print(self.playerName + "'s turn")
-
-
-		while playing == True and self.bust == False:
-			self.hitMe(gameDeck.dealCard())
-			self.playerHand.displayHand()
-
-			if self.bust:
-				print("House bust!!")
-
-			else:
-				userOption = raw_input('Would you like another card (y, n)? ')
-
-				while userOption not in ('y', 'n'):
-					userOption = raw_input('Please enter vaild option. Would you like another card (y, n)? ')
-				
-				if userOption is 'y':
-					playing = True
-				else:
-					playing = False
+	def showHandStatus(self):
+		self.hand.display()
+		handTotal = self.hand.getTotal()
+		print("The total is: " + str(handTotal))
