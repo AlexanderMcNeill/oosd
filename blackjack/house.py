@@ -7,16 +7,15 @@ class House(player.Player):
 
 
 	def __init__(self):
-		super(House, self).__init__("House")
+		super(House, self).__init__(self.HOUSE_NAME)
 
-	def setup(self, gameDeck):
-		self.hitMe(gameDeck.dealCard())
-		
-		self.hitMe(gameDeck.dealCard())
-
+	#Method that displays the starting hand of the house
+	def showInitialHand(self,):
 		print("The House shows their first card and leaves the other card face down")
 		self.hand.displayCard(0)
 
+	#Method that plays a turn following the house's rules
+	#Violation of the single responsibility priciple due to the method also displaying to the screen
 	def playTurn(self, gameDeck):
 
 		print("//////////////////////////////////////////////////////////////////////")

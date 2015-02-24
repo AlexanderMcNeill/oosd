@@ -59,6 +59,7 @@ class BlackJack(object):
 
 		print("//////////////////////////////////////////////////////////////////////")
 		self.house.setup(self.deck)
+		self.house.showInitialHand()
 
 
 	def runPlayers(self):
