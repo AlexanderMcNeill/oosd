@@ -10,15 +10,16 @@ class BlackJack(object):
 
 	#Method that sets up all the game players
 	def setupPlayers(self):
-		numPlayers = input("How many players? (max players 5)")
+		numPlayers = raw_input("How many players? (max players 5)")
+		numPlayers = int(numPlayers)
 
 		#Keeping on asking for valid input untill vaild input is put in
-		while self.checkValidPlayerInput(numPlayers) == False:
-			numPlayers = input("Please enter valid input. How many players? (max players 5)")
+		#while self.checkValidPlayerInput(numPlayers) == False:
+		#	numPlayers = raw_input("Please enter valid input. How many players? (max players 5)")
 
 		#Adding the amount of players the user input
 		for i in range(0, numPlayers):
-			playerName = input("Pleae give a name for player " + str(i))
+			playerName = raw_input("Pleae give a name for player " + str(i))
 			self.players.append(player.Player(playerName))
 
 		#Creating the house player for the other players to play against
@@ -36,7 +37,7 @@ class BlackJack(object):
 	def runGame(self):
 		self.setupGame()
 		self.runPlayers()
-		self.runResults
+		self.runResults()
 
 	def setupGame(self):
 
@@ -54,8 +55,9 @@ class BlackJack(object):
 			if p.isBust:
 				print(p.name + " is out of the game, the house takes their money")
 
-		self.house.setup()
-		self.house.showInitalHand()
+
+		print("//////////////////////////////////////////////////////////////////////")
+		self.house.setup(self.deck)
 
 
 	def runPlayers(self):
@@ -71,7 +73,7 @@ class BlackJack(object):
 				print(p.name + "'s current hand is:")
 				p.showHandStatus()
 
-				playerInput = input("Would you like to play this round? (Please answer with 'y' or 'n')")
+				playerInput = raw_input("Would you like to play this round? (Please answer with 'y' or 'n')")
 
 				playerPlaying = self.checkPlayerResponse(playerInput)
 
@@ -81,23 +83,25 @@ class BlackJack(object):
 
 					newCard = self.deck.dealCard()
 
-					print("Dealer deals " + p.name + " the " + newCard.display())
+					print("Dealer deals " + p.name)
+					newCard.display()
 
+					p.hitMe(newCard)
 					print(p.name + "'s current hand is:")
 					p.showHandStatus()
 
-					if player.isBust:
+					if p.isBust:
 						print(p.name + " went bust")
 						playerPlaying = False
 
 					else:
-						playerInput = input("Would you like another card? (Please answer with 'y' or 'n')")
+						playerInput = raw_input("Would you like another card? (Please answer with 'y' or 'n')")
 
 						playerPlaying = self.checkPlayerResponse(playerInput)
 
-			self.house.playTurn(self.deck)
+		self.house.playTurn(self.deck)
 
-	def runResults():
+	def runResults(self):
 		print("//////////////////////////////////////////////////////////////////////")
 		print("The game is over. The results are:")
 		
@@ -107,12 +111,14 @@ class BlackJack(object):
 			if p.isBust:
 				print(p.name + " went bust, the house took their money")
 			else:
-				if p.hand.getTotal() > self.house.getTotal() or self.house.isBust:
+				if p.hand.getTotal() > self.house.hand.getTotal() or self.house.isBust:
 					print(p.name + " beats the house, house pays out money")
+				elif p.hand.getTotal() == self.house.hand.getTotal():
+					print("Even between both " + p.name + " and " + self.house.name + " both keep their money")
+				else:
+					print(p.name + "'s hand has a lower value that " + house.name + ", " +  house.name + " takes their money")
 
 	def checkPlayerResponse(self, playerInput):
-		while playerInput is not 'y' or playerInput is not 'n':
-			print("Please enter valid answer ('y' or 'n')")
 
 		if playerInput is 'y' or playerInput is 'Y':
 			return True

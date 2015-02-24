@@ -9,12 +9,15 @@ class Player(object):
 		self.hand = hand.Hand()
 
 	def hitMe(self, newCard):
-		self.playerHand.addCard(newCard)
-		self.bust = self.playerHand.checkBust()
+		self.hand.addCard(newCard)
+
+		if self.hand.getTotal() > 21:
+
+			self.isBust = True
 
 	def setup(self, deck):
-		hitMe(deck)
-		hitMe(deck)
+		self.hitMe(deck.dealCard())
+		self.hitMe(deck.dealCard())
 
 	def showHandStatus(self):
 		self.hand.display()
