@@ -5,12 +5,16 @@ class Player(object):
 
 	def __init__(self, playerName):
 		self.playerName = playerName
-		self.bust = False
+		self.isBust = False
 		self.playerHand = hand.Hand()
 
 	def hitMe(self, newCard):
 		self.playerHand.addCard(newCard)
 		self.bust = self.playerHand.checkBust()
+
+	def setup(self, deck):
+		hitMe(deck)
+		hitMe(deck)
 
 	def playTurn(self, gameDeck):
 		
