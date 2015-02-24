@@ -18,8 +18,6 @@ class House(player.Player):
 		self.hand.displayCard(0)
 
 	def playTurn(self, gameDeck):
-		
-		playing = True
 
 		print("//////////////////////////////////////////////////////////////////////")
 		print("It is the " + self.name + "'s turn")
@@ -27,7 +25,13 @@ class House(player.Player):
 		print(self.name + "'s current hand is:")
 		self.showHandStatus()
 
-		while playing == True and self.isBust == False and self.hand.getTotal() > 16:
+		if self.hand.getTotal() > 16 and not self.isBust:
+			print(self.name + " house stands")
+			playing = False
+		elif self.isBust:
+			print(self.name  + " went bust!!")
+
+		while self.isBust == False and self.hand.getTotal() < 16:
 
 			newCard = gameDeck.dealCard()
 
@@ -35,6 +39,8 @@ class House(player.Player):
 			newCard.display()
 			
 			self.hitMe(newCard)
+
+			print(self.name + "'s current hand is:")
 			self.showHandStatus()
 
 			if self.hand.getTotal() > 16 and not self.isBust:

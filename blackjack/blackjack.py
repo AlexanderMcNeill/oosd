@@ -3,6 +3,7 @@ import player
 import house
 
 class BlackJack(object):
+	VALID_INPUTS = {'y', 'Y', 'n', 'N'}
 	def __init__(self):
 		self.deck = deck.Deck()
 		self.players = []
@@ -10,29 +11,29 @@ class BlackJack(object):
 
 	#Method that sets up all the game players
 	def setupPlayers(self):
-		numPlayers = raw_input("How many players? (max players 5)")
-		numPlayers = int(numPlayers)
+		numPlayers = raw_input("How many players (max players 5)? ")
 
 		#Keeping on asking for valid input untill vaild input is put in
-		#while self.checkValidPlayerInput(numPlayers) == False:
-		#	numPlayers = raw_input("Please enter valid input. How many players? (max players 5)")
+
+		converted = False
+
+		while converted == False:
+			try:
+				numPlayers = int(numPlayers)
+				converted = True
+
+			except:
+				numPlayers = raw_input("Please enter vaild input: ")
+				converted = False
 
 		#Adding the amount of players the user input
 		for i in range(0, numPlayers):
-			playerName = raw_input("Pleae give a name for player " + str(i))
+			playerName = raw_input("Pleae give a name for player " + str(i) + ": ")
 			self.players.append(player.Player(playerName))
 
 		#Creating the house player for the other players to play against
 		self.house = house.House()
-
-	def checkValidPlayerInput(self, numPlayers):
-		if numPlayers is int:
-			if numPlayers < 6 and numPlayers > 0:
-				return True
-			else:
-				return False
-		else:
-			return False
+	
 
 	def runGame(self):
 		self.setupGame()
@@ -79,8 +80,6 @@ class BlackJack(object):
 
 				while playerPlaying:
 
-					
-
 					newCard = self.deck.dealCard()
 
 					print("Dealer deals " + p.name)
@@ -116,9 +115,12 @@ class BlackJack(object):
 				elif p.hand.getTotal() == self.house.hand.getTotal():
 					print("Even between both " + p.name + " and " + self.house.name + " both keep their money")
 				else:
-					print(p.name + "'s hand has a lower value that " + house.name + ", " +  house.name + " takes their money")
+					print(p.name + "'s hand has a lower value that " + self.house.name + ", " +  self.house.name + " takes their money")
 
 	def checkPlayerResponse(self, playerInput):
+
+		while playerInput not in self.VALID_INPUTS:
+			playerInput = raw_input("Please enter vaild input: ")
 
 		if playerInput is 'y' or playerInput is 'Y':
 			return True
