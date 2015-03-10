@@ -20,13 +20,13 @@ class MySet:
             in the set.
         """
 
-        if item in self.set:
+        if item in self.myset:
             self.myset.remove(item)
 
     def is_empty(self):
         """Returns True is the set has no members."""
         
-        if len(self.set) < 1:
+        if len(self.myset) < 1:
             return True
         else:
             return False
@@ -57,7 +57,14 @@ class MySet:
         """Returns True if self and otherset are equal, i.e.,
            they have the exact same members.
         """
-        pass
+        is_equal = True
+        index = 0
+
+        if(len(self.myset) != len(otherset)):
+            isEqual = False
+
+        while(is_equal and index < len(self.myset)):
+            pass
 
     def is_proper_subset_of(self, otherset):
         """Returns True is self is a *proper* subset of otherset."""
