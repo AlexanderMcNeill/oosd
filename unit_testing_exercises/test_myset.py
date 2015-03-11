@@ -1,40 +1,65 @@
 import unittest
 import myset
 
-class TestMySet(unittest.TestCase):
-    
-    def setup(self):
-        items = ["hi", "there", "tom"]
-        self.myset = myset.MySet(items)
 
-        if(self.myset == None):
-            raise(Exception("Null"))
+class TestMySet(unittest.TestCase):
+
+    def setUp(self):
+        pass
 
     def test_constructor(self):
         incorrectItems = ["hi", "hi", "there", "tom"]
+        correctItems = ["hi", "there", "tom"]
 
+        test_set = myset.MySet(correctItems)
+
+        self.assertEqual(test_set.get_size(), len(correctItems))
+
+        test_set = myset.MySet(incorrectItems)
+
+        self.assertEqual(test_set.get_size(), len(correctItems))
 
     def test_add_item(self):
-        #adding item and making sure that is added
-        newItem = "howdy"
-        expected_new_size = len(self.myset.myset) + 1
-        self.myset.add_item(newItem)
+        correctItems = ["hi", "there", "tom"]
+        test_set = myset.MySet(correctItems)
 
-        self.assertEqual(len(self.myset.set), expected_new_size)
+        new_item = "howdy"
+        expected_new_size = len(test_set.set) + 1
 
-        #adding the same item again making sure that it is'nt added again
-        self.myset.add_item(newItem)
+        test_set.add_item(new_item)
+        self.assertEqual(len(test_set.set), expected_new_size)
 
-        self.assertEqual(len(self.myset.myset), expected_new_size)
+        test_set.add_item(new_item)
+        self.assertEqual(len(test_set.set), expected_new_size)
 
     def test_remove_item(self):
-        pass
+        items = ["hi", "there", "tom"]
+        correctSize = len(items) - 1
+        test_set = myset.MySet(items)
+
+        test_set.remove_item("hi")
+
+        self.assertEqual(test_set.get_size(), correctSize)
+
+        test_set.remove_item("hi")
+
+        self.assertEqual(test_set.get_size(), correctSize)
 
     def test_is_empty(self):
-        pass
+        test_set = myset.MySet(None)
+
+        self.assertEqual(test_set.is_empty(), True)
+
+        test_set.add_item("Test")
+
+        self.assertEqual(test_set.is_empty(), False)
 
     def test_has_item(self):
-        pass
+        items = ["hi", "there", "tom"]
+        test_set = myset.MySet(items)
+
+        self.assertEqual(test_set.has_item("hi"), True);
+        self.assertEqual(test_set.has_item("alex"), False);
 
     def test_intersection(self):
         pass
@@ -46,11 +71,16 @@ class TestMySet(unittest.TestCase):
         pass
 
     def test_is_equal_to(self):
-        pass
+        items = ["hi", "there", "tom"]
+        test_set = myset.MySet(items)
+
+        self.assertEqual(test_set.is_equal_to(items), True);
+
+        items.append("Test")
+        self.assertEqual(test_set.is_equal_to(items), False);
 
     def test_is_proper_subset_of(self):
         pass
-
 
 
 if __name__ == '__main__':
