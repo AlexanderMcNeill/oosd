@@ -4,9 +4,10 @@ import deck
 import player
 import player_strategy
 import house_strategy
+import random_class_shuffle
 
-
-d = deck.Deck()
+d = deck.Deck(random_class_shuffle.RandomClassShuffle())
+d.shuffle()
 p = player.Player(player_strategy.PlayerStrategy())
 h = player.HousePlayer(house_strategy.HouseStrategy())
 p.take_card(d.next())
