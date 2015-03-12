@@ -14,8 +14,8 @@ class MySet:
         """ Adds an item to the set if it is not already present. If the
             item is present, do nothing.
         """
-        if item not in self.set:
-            self.set.append(item)
+        if item not in set:
+            set.append(item)
 
     def remove_item(self, item):
         """ Removes item from the set.  Does nothing if item is not
@@ -52,13 +52,15 @@ class MySet:
 
     def union(self, otherset):
         """"Returns a new set that is the union of self and otherset"""
-        output = []
+        output = MySet(None)
 
         for i in otherset:
-            self.add_item(i)
+            output.add_item(i)
 
         for i in self.set:
-            self.add_item(i)
+            output.add_item(i)
+
+        return otherset
 
     def is_subset_of(self, otherset):
         """Returns True if self is a subset of otherset."""

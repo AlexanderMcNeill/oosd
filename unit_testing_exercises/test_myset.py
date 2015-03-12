@@ -65,7 +65,14 @@ class TestMySet(unittest.TestCase):
         pass
 
     def test_union(self):
-        pass
+        items = ["hi", "there", "tom"]
+        test_set = myset.MySet(items)
+
+        newItems = ["testing", "1", "2", "3"]
+
+        union_set = test_set.union(newItems)
+
+        self.assertEqual(union_set.get_size(), 7)
 
     def test_is_subset_of(self):
         pass
