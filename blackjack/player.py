@@ -8,6 +8,8 @@ class Player(object):
 		self.isBust = False
 		self.hand = hand.Hand()
 
+    def hits()
+
 	def hitMe(self, newCard):
 		self.hand.addCard(newCard)
 

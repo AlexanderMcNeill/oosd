@@ -75,9 +75,7 @@ class BlackJack(object):
 				print(p.name + "'s current hand is:")
 				p.showHandStatus()
 
-				playerInput = raw_input("Would you like to play this round? (Please answer with 'y' or 'n')")
-
-				playerPlaying = self.checkPlayerResponse(playerInput)
+				playerPlaying = p.hits();
 
 				while playerPlaying:
 
@@ -95,9 +93,7 @@ class BlackJack(object):
 						playerPlaying = False
 
 					else:
-						playerInput = raw_input("Would you like another card? (Please answer with 'y' or 'n')")
-
-						playerPlaying = self.checkPlayerResponse(playerInput)
+						playerPlaying = p.hits();
 
 		self.house.playTurn(self.deck)
 
@@ -117,15 +113,5 @@ class BlackJack(object):
 					print("Even between both " + p.name + " and " + self.house.name + " both keep their money")
 				else:
 					print(p.name + "'s hand has a lower value that " + self.house.name + ", " +  self.house.name + " takes their money")
-
-	def checkPlayerResponse(self, playerInput):
-
-		while playerInput not in self.VALID_INPUTS:
-			playerInput = raw_input("Please enter vaild input: ")
-
-		if playerInput is 'y' or playerInput is 'Y':
-			return True
-		else:
-			return False
 
 
