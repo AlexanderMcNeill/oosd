@@ -6,4 +6,5 @@ import json
 class JsonDisplayer(json.JSONDecoder):
 
     def convert_document(self, doc):
-        self.decode(doc)
+        pass
+     #self.decode(doc)

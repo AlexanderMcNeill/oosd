@@ -6,7 +6,7 @@ class XmlDisplayer():
     def convert_document(self, doc):
         return self.convert_to_xml(doc)
 
-    def convert_to_xml(self, doc, depth):
+    def convert_to_xml(self, doc):
         output = ""
         for key, value in doc.items():
             output += "\n<" + key + ">"
