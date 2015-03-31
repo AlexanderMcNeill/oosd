@@ -26,7 +26,7 @@ def analyse_results(results, name):
         for val in range(1, 11):
             for j in range(0, 52):
                 current_val = results[(str(val) + suit)][j]
-                result +=  math.pow((current_val - 10), 2) / 10
+                result += math.pow((current_val - 10), 2) / 10
         for val in "AKQJ":
             for j in range(0, 52):
                 current_val = results[(str(val) + suit)][j]
