@@ -4,7 +4,7 @@ __author__ = 'alexmcneill'
 class ContactFactory():
 
     def create_postal_address(self):
-        pass
+        raise NotImplementedError()
 
     def create_phone_number(self):
-        pass
+        raise NotImplementedError()
