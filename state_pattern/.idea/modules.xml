@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/bicycle_dash.iml" filepath="$PROJECT_DIR$/.idea/bicycle_dash.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/State Pattern.iml" filepath="$PROJECT_DIR$/.idea/State Pattern.iml" />
     </modules>
   </component>
 </project>
