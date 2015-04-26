@@ -17,4 +17,6 @@ def fib_closure():
 
 fib_method = fib_closure()
 
-print(fib_method(4))
+print(fib_method(9))
+
+print(fib_method(9))
