@@ -15,12 +15,23 @@ class PingCheck(threading.Thread):
         while True:
             ip = self.in_q.get()
             self.print_function(ip)
-            ping_out = os.popen("ping -q -c2 " + ip, "r")
-            line = ping_out.readline()
-            n_received = re.findall(self.received_packages, line)
-            result = "IP address {0}: {1} received".format(ip, n_received)
+            result = self.get_ping_result(ip)
+
             self.out_q.put(result)
             self.in_q.task_done()
+
+    def get_ping_result(self, ip):
+        ping_out = os.popen("ping -q -c2 " + ip, "r")
+        line = ""
+
+        while True:
+            line = ping_out.readline()
+            if not line:
+                break
+            n_received = re.findall(self.received_packages, line)
+            result = "IP address {0}: {1} received".format(ip, n_received)
+
+        return result
 
 
 class Reporter(threading.Thread):
